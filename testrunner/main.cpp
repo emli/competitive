@@ -1,4 +1,4 @@
-#include "../tasks/spoj/KeyTask.cpp"
+#include "/home/jedi/Desktop/competitive/tasks/GGuestStudent.cpp"
 
 #include <iostream>
 #include <fstream>
@@ -29,7 +29,7 @@ bool check(std::string expected, std::string actual) {
 
 int main() {
 	std::vector<jhelper::Test> tests = {
-		{"1 10\n*.........\n\n1 3\n*#X\n\n3 20\n####################\n#XY.gBr.*.Rb.G.GG.y#\n####################\n\n0 0\n", "Escape possible in 9 steps.\nThe poor student is trapped!\nEscape possible in 45 steps.\n", true, true},
+		{"3\n2\n0 1 0 0 0 0 0\n100000000\n1 0 0 0 1 0 1\n1\n1 0 0 0 0 0 0\n", "8\n233333332\n1\n\n\n", true, true},
 	};
 	bool allOK = true;
 	int testID = 0;
@@ -48,7 +48,7 @@ int main() {
 			std::stringstream in(test.input);
 			std::ostringstream out;
 			std::clock_t start = std::clock();
-			KeyTask solver;
+			GGuestStudent solver;
 			solver.solve(in, out);
 			std::clock_t finish = std::clock();
 			double currentTime = double(finish - start) / CLOCKS_PER_SEC;
