@@ -1,12 +1,4 @@
-#include "/home/jedi/Desktop/competitive/tasks/Kartochki.cpp"
-
-#include <iostream>
-#include <fstream>
-#include <sstream>
-#include <string>
-#include <vector>
-#include <cctype>
-#include <ctime>
+#include "../tasks/acmp/Kartochki.cpp"
 
 namespace jhelper {
 
