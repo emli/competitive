@@ -1,4 +1,4 @@
-#include "/home/jedi/Desktop/competitive/tasks/GGuestStudent.cpp"
+#include "/home/jedi/Desktop/competitive/tasks/Kartochki.cpp"
 
 #include <iostream>
 #include <fstream>
@@ -29,7 +29,7 @@ bool check(std::string expected, std::string actual) {
 
 int main() {
 	std::vector<jhelper::Test> tests = {
-		{"3\n2\n0 1 0 0 0 0 0\n100000000\n1 0 0 0 1 0 1\n1\n1 0 0 0 0 0 0\n", "8\n233333332\n1\n\n\n", true, true},
+		{"solo\n", "12\n", true, true},
 	};
 	bool allOK = true;
 	int testID = 0;
@@ -48,7 +48,7 @@ int main() {
 			std::stringstream in(test.input);
 			std::ostringstream out;
 			std::clock_t start = std::clock();
-			GGuestStudent solver;
+			Kartochki solver;
 			solver.solve(in, out);
 			std::clock_t finish = std::clock();
 			double currentTime = double(finish - start) / CLOCKS_PER_SEC;
