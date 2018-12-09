@@ -7,41 +7,98 @@
 
 #include <bits/stdc++.h>
 
+
+#include <vector>
+#include <cstddef>
+#include <spcppl/ranges/fors.hpp>
+
+
+bool isPrime(int n) {
+    for (int i = 2; i * i <= n; ++i) {
+        if (n % i == 0) {
+            return false;
+        }
+    }
+    return n >= 2;
+}
+
+bool isPrime(int64_t n) {
+    for (int64_t i = 2; i * i <= n; ++i) {
+        if (n % i == 0) {
+            return false;
+        }
+    }
+    return n >= 2;
+}
+
+std::vector<Bool> primeMap(std::size_t maxN) {
+    std::vector<Bool> prime(maxN + 1, true);
+
+    prime[0] = false;
+    prime[1] = false;
+
+    for (std::size_t i = 2; i * i <= maxN; ++i) {
+        if (prime[i]) {
+            if (i * 1ULL * i <= maxN) {
+                for (std::size_t j = i * i; j <= maxN; j += i) {
+                    prime[j] = false;
+                }
+            }
+        }
+    }
+    return prime;
+}
+
+std::vector<int> allPrimes(int maxN) {
+    std::vector<int> result;
+    result.reserve(maxN);
+    std::vector<Bool> map = primeMap(maxN);
+    for (int i: range(maxN + 1)) {
+        if (map[i]) {
+            result.push_back(i);
+        }
+    }
+    return result;
+}
+
+int nextPrime(int n) {
+    while (!isPrime(n)) {
+        ++n;
+    }
+    return n;
+}
+
+
 using namespace std;
 
-class Kartochki {
+#define forn(i, n) for(int i = 0 ; (i) < (n) ; ++i)
+#define forx(i, n) for(int i = 1 ; (i) <= (n) ; ++i)
+#define ll long long
+#define all(x) (x).begin(),(x).end()
+#define sqr(x) (x) * (x)
+#define debug(x) cout << #x <<" = " << x << endl
+#define printvpair(v) for(auto x : v) cout << x.first  <<" " << x.second << endl;
+#define printv(v) if (v.size()> 0) {for(auto x : v) cout << x << " "; cout << endl;}
+#define MINUS(a) memset(a,0xff,sizeof(a))
+
+const int N = (int) 1e5 + 7;
+
+const int dx[4] = {0, 0, 1, -1};
+const int dy[4] = {1, -1, 0, 0};
+
+
+class Test {
 public:
-	map<int,int> ch;
-	map<int,bool> used;
-	long long f(int n)
-	{
-		long long res=1;
-		for(int i=2;i<=n;i++)
-			res*=i;
-		return res;
-	}
 	void solve(std::istream& cin, std::ostream& cout) {
 		ios::sync_with_stdio(false);
 		cin.tie(0);
-		string s;
-		long long res = 1;
-		cin>>s;
-		for(int i=0;i<s.length();i++)ch[s[i]]++;
-
-		for(int i=0;i<s.length();i++){
-			res = res * (i + 1);
-			if (res % f(ch[s[i]]) == 0 && !used[s[i]]){
-				res = res / f (ch[s[i]]);
-				used[s[i]] = true;
-			}
-		}
-		cout<<res<<endl;
+        isPrime(0);
 	}
 };
 
 
 int main() {
-	Kartochki solver;
+    Test solver;
 	std::istream& in(std::cin);
 	std::ostream& out(std::cout);
 	solver.solve(in, out);

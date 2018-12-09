@@ -1,4 +1,4 @@
-#include "../tasks/acmp/Kartochki.cpp"
+#include "/home/jedi/Desktop/competitive/tasks/Test.cpp"
 
 namespace jhelper {
 
@@ -21,7 +21,7 @@ bool check(std::string expected, std::string actual) {
 
 int main() {
 	std::vector<jhelper::Test> tests = {
-		{"solo\n", "12\n", true, true},
+
 	};
 	bool allOK = true;
 	int testID = 0;
@@ -40,7 +40,7 @@ int main() {
 			std::stringstream in(test.input);
 			std::ostringstream out;
 			std::clock_t start = std::clock();
-			Kartochki solver;
+			Test solver;
 			solver.solve(in, out);
 			std::clock_t finish = std::clock();
 			double currentTime = double(finish - start) / CLOCKS_PER_SEC;

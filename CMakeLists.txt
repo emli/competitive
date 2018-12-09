@@ -3,7 +3,7 @@ project(emli-competitive-programming)
 
 add_executable(testrunner testrunner/main.cpp)
 file(GLOB TASKS "tasks/*.cpp")
-file(GLOB_RECURSE HEADERS "library/*.hpp" )
+file(GLOB_RECURSE HEADERS "lib/*.hpp")
 
 ADD_DEFINITIONS(-std=c++11)
 
