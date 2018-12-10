@@ -7,98 +7,44 @@
 
 #include <bits/stdc++.h>
 
-
-#include <vector>
-#include <cstddef>
-#include <spcppl/ranges/fors.hpp>
-
-
-bool isPrime(int n) {
-    for (int i = 2; i * i <= n; ++i) {
-        if (n % i == 0) {
-            return false;
-        }
-    }
-    return n >= 2;
-}
-
-bool isPrime(int64_t n) {
-    for (int64_t i = 2; i * i <= n; ++i) {
-        if (n % i == 0) {
-            return false;
-        }
-    }
-    return n >= 2;
-}
-
-std::vector<Bool> primeMap(std::size_t maxN) {
-    std::vector<Bool> prime(maxN + 1, true);
-
-    prime[0] = false;
-    prime[1] = false;
-
-    for (std::size_t i = 2; i * i <= maxN; ++i) {
-        if (prime[i]) {
-            if (i * 1ULL * i <= maxN) {
-                for (std::size_t j = i * i; j <= maxN; j += i) {
-                    prime[j] = false;
-                }
-            }
-        }
-    }
-    return prime;
-}
-
-std::vector<int> allPrimes(int maxN) {
-    std::vector<int> result;
-    result.reserve(maxN);
-    std::vector<Bool> map = primeMap(maxN);
-    for (int i: range(maxN + 1)) {
-        if (map[i]) {
-            result.push_back(i);
-        }
-    }
-    return result;
-}
-
-int nextPrime(int n) {
-    while (!isPrime(n)) {
-        ++n;
-    }
-    return n;
-}
-
-
 using namespace std;
 
-#define forn(i, n) for(int i = 0 ; (i) < (n) ; ++i)
-#define forx(i, n) for(int i = 1 ; (i) <= (n) ; ++i)
-#define ll long long
-#define all(x) (x).begin(),(x).end()
-#define sqr(x) (x) * (x)
-#define debug(x) cout << #x <<" = " << x << endl
-#define printvpair(v) for(auto x : v) cout << x.first  <<" " << x.second << endl;
-#define printv(v) if (v.size()> 0) {for(auto x : v) cout << x << " "; cout << endl;}
-#define MINUS(a) memset(a,0xff,sizeof(a))
+const int N = (int) 20 + 7;
 
-const int N = (int) 1e5 + 7;
-
-const int dx[4] = {0, 0, 1, -1};
-const int dy[4] = {1, -1, 0, 0};
-
-
-class Test {
+class acmp120 {
 public:
+	int a[N][N]{};
+	int dp[N][N]{};
+	int n, m;
 	void solve(std::istream& cin, std::ostream& cout) {
 		ios::sync_with_stdio(false);
 		cin.tie(0);
-        isPrime(0);
+		cin >> n >> m;
+		for (int i = 0; i <= n; ++i) {
+			for (int j = 0; j <= m; ++j) {
+				dp[i][j] = INT_MAX;
+			}
+		}
+		for (int i = 1; i <= n; ++i) {
+			for (int j = 1; j <= m; ++j) {
+				cin >> a[i][j];
+			}
+		}
+		dp[1][1] = a[1][1];
+
+		for (int i = 1; i <= n; ++i) {
+			for (int j = 1; j <= m; ++j) {
+				if (i == 1 && j == 1) continue;
+				dp[i][j] = min(dp[i - 1][j], dp[i][j - 1]) + a[i][j];
+			}
+		}
+		cout << dp[n][m] << endl;
 	}
 };
 
 
 int main() {
-    Test solver;
+	acmp120 solver;
 	std::istream& in(std::cin);
 	std::ostream& out(std::cout);
 	solver.solve(in, out);

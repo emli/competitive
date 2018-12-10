@@ -1,4 +1,4 @@
-#include "/home/jedi/Desktop/competitive/tasks/Test.cpp"
+#include "../tasks/acmp/acmp120.cpp"
 
 namespace jhelper {
 
@@ -21,7 +21,8 @@ bool check(std::string expected, std::string actual) {
 
 int main() {
 	std::vector<jhelper::Test> tests = {
-
+			{"3 4\n1 1 1 1\n5 2 2 100\n9 4 2 1\n",                                   "8",  true, true},
+			{"5 5\n1 1 1 1 1\n3 100 100 100 100\n1 1 1 1 1\n2 2 2 2 1\n1 1 1 1 1\n", "11", true, true},
 	};
 	bool allOK = true;
 	int testID = 0;
@@ -40,7 +41,7 @@ int main() {
 			std::stringstream in(test.input);
 			std::ostringstream out;
 			std::clock_t start = std::clock();
-			Test solver;
+			acmp120 solver;
 			solver.solve(in, out);
 			std::clock_t finish = std::clock();
 			double currentTime = double(finish - start) / CLOCKS_PER_SEC;
