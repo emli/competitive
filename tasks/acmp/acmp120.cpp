@@ -3,17 +3,17 @@
 using namespace std;
 
 const int INF = INT_MAX / 2;
-const int N = (int) 20 + 7;
+
 
 class acmp120 {
 public:
     void solve(std::istream &cin, std::ostream &cout) {
         ios::sync_with_stdio(false);
-        cin.tie(0);
+        cin.tie(nullptr);
         int sizeI, sizeJ;
         cin >> sizeI >> sizeJ;
-        vector<vector<int>> a(sizeI + 1, vector<int>(sizeJ + 1, 0));
-        vector<vector<int>> minSum(sizeI + 1, vector<int>(sizeJ + 1, INF));
+        vector<vector<int>> a(size_t(sizeI + 1), vector<int>(sizeJ + 1, 0));
+        vector<vector<int>> minSum(size_t(sizeI + 1), vector<int>(sizeJ + 1, INF));
 
         for (int i = 1; i <= sizeI; ++i) {
             for (int j = 1; j <= sizeJ; ++j) {
