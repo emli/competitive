@@ -11,4 +11,4 @@ target_link_libraries(testrunner spcppl)
 
 ADD_DEFINITIONS(-std=c++11)
 
-add_executable(test ${TASKS} ${HEADERS})
+add_executable(test ${TASKS} ${HEADERS} tasks/acmp/acmp165.cpp)
