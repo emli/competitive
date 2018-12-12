@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.12)
 
 project(emli-competitive-programming)
 
-add_executable(testrunner testrunner/main.cpp tasks/acmp/acmp368.cpp)
+add_executable(testrunner testrunner/main.cpp tasks/acmp/acmp114.cpp)
 file(GLOB TASKS "tasks/*.cpp")
 file(GLOB_RECURSE HEADERS "lib/*.hpp")
 
