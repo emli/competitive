@@ -19,5 +19,19 @@ public:
         }
 
         cout << count[length] << endl;
+        // cout << findMax(2,50) << endl; // 2.0365e+10
+
+        //  assert(findMax(2,50) <= INT_MAX); exception!
+        //  assert(findMax(2,50) <= LLONG_MAX);
+    }
+
+    double findMax(int width, int length) {
+        vector<double> count(size_t(length + 1), 1);
+
+        for (int i = width; i <= length; ++i) {
+            count[i] = count[i - 1] + count[i - width];
+        }
+
+        return count[length];
     }
 };
