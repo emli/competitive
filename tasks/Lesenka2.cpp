@@ -68,12 +68,12 @@ public:
                 to[i] = i + 2;
             }
         }
-        cout << maxSum[1] << endl;
+        cout << maxSum[0] << endl;
 
-        n = 0;
-        while (to[n] != -1) {
-            n = to[n];
-            cout << n << " ";
+        int pos = 0;
+        while (to[pos] != -1) {
+            pos = to[pos];
+            cout << pos << " ";
         }
     }
 };
