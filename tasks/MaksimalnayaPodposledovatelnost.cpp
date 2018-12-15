@@ -10,22 +10,22 @@ public:
         int n;
         cin >> n;
         vector<int> a(n + 1);
-        vector<int> minLen(n + 1);
+        vector<int> maxLen(n + 1);
 
         for (int i = 1; i <= n; ++i) {
             cin >> a[i];
         }
 
         int ans = 1;
-        minLen[1] = 1;
+        maxLen[1] = 1;
         for (int i = 2; i <= n; ++i) {
-            minLen[i] = 1;
+            maxLen[i] = 1;
             for (int j = 1; j < i; ++j) {
-                if (a[i] > a[j] && minLen[j] + 1 > minLen[i]) {
-                    minLen[i] = minLen[j] + 1;
+                if (a[i] > a[j] && maxLen[j] + 1 > maxLen[i]) {
+                    maxLen[i] = maxLen[j] + 1;
                 }
             }
-            ans = max(ans, minLen[i]);
+            ans = max(ans, maxLen[i]);
         }
         cout << ans << endl;
     }
