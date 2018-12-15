@@ -21,26 +21,17 @@ public:
         }
         sort(all(a));
 
-        for (int pos = n; pos >= 0; --pos) {
+        for (int pos = n - 1; pos >= 0; --pos) {
             int &res = minSum[pos];
-            if (pos >= n) {
-                res = 0;
-                continue;
-            }
-
-            if (pos == 0) {
-                int ans = INF;
-                ans = min(ans, minSum[pos + 2] + a[1] - a[0]);
-                res = ans;
-            }
+            int ans = INF;
+            
             if (pos > 1) {
-                int ans = INF;
                 ans = min(ans, minSum[pos + 1] + a[pos] - a[pos - 1]);
-                if (pos + 1 < n) {
-                    ans = min(ans, minSum[pos + 2] + a[pos + 1] - a[pos]);
-                }
-                res = ans;
             }
+            if (pos + 1 < n) {
+                ans = min(ans, minSum[pos + 2] + a[pos + 1] - a[pos]);
+            }
+            res = ans;
         }
 
         cout << minSum[0] << endl;
