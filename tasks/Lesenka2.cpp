@@ -57,25 +57,23 @@ public:
             if (i == n) {
                 maxSum[i] = a[i];
                 to[i] = -1;
+            } else if (i == n - 1) {
+                maxSum[i] = maxSum[i + 1] + a[i];
+                to[i] = i + 1;
             } else if (maxSum[i + 1] > maxSum[i + 2]) {
                 maxSum[i] = maxSum[i + 1] + a[i];
                 to[i] = i + 1;
-            } else if (i + 2 <= n) {
+            } else {
                 maxSum[i] = maxSum[i + 2] + a[i];
                 to[i] = i + 2;
             }
         }
         cout << maxSum[1] << endl;
 
-        vector<int> ans;
         n = 0;
         while (to[n] != -1) {
             n = to[n];
-            ans.push_back(n);
-        }
-
-        for (int x : ans) {
-            cout << x << " ";
+            cout << n << " ";
         }
     }
 };
