@@ -72,7 +72,7 @@ int main() {
 		std::cout << "Accepted" << std::endl;
 	}
 	else {
-		std::cout << "Some cases failed" << std::endl;
+        std::cout << "Some cases failed :(" << std::endl;
 	}
 	std::cout << "Maximal time: " << maxTime << "s." << std::endl;
 	return 0;

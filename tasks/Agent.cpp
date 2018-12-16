@@ -3,11 +3,7 @@
 using namespace std;
 
 #define all(x) (x).begin(),(x).end()
-const bool debug = true;
 
-int powerMin(int a, int b, int c) {
-    return min(a, min(b, c));
-}
 class Agent {
 public:
     void solve(std::istream &cin, std::ostream &cout) {
@@ -15,41 +11,27 @@ public:
         cin.tie(nullptr);
         int n;
         cin >> n;
-        vector<pair<int, int> > a(n);
-        vector<int> minSum(n);
 
+        vector<int> minSum(n + 1);
+        vector<pair<int, int> > a(n);
         for (int i = 0; i < n; ++i) {
             cin >> a[i].first >> a[i].second;
         }
         sort(all(a));
 
-        if (debug) {
-            for (int i = 0; i < n; ++i) {
-                cout << a[i].first << " " << a[i].second << endl;
-            }
-        }
-        for (int i = 1; i < n; ++i) {
-            if (i == 1) {
-                minSum[i] = minSum[i - 1] + powerMin(a[i - 1].second, a[i].second, a[i + 1].second);
-            } else if (i == n - 1) {
-                minSum[i] = minSum[i - 1] + max(a[i - 1].second, a[i].second);
+        for (int pos = n; pos >= 0; --pos) {
+            int &res = minSum[pos];
+            if (pos == 0) {
+                res = minSum[pos + 2] + a[pos + 1].second;
+            } else if (pos >= n) {
+                res = 0;
+            } else if (pos == n - 1) {
+                res = a[pos].second;
             } else {
-                minSum[i] = minSum[i - 2] + powerMin(a[i - 1].second, a[i].second, a[i + 1].second);
+                res = min(minSum[pos + 1] + a[pos].second, minSum[pos + 2] + a[pos + 1].second);
             }
         }
-
-        if (debug) {
-            for (int i = 0; i < n; ++i) {
-                cout << i << " ";
-            }
-            cout << endl;
-
-            for (int i = 0; i < n; ++i) {
-                cout << minSum[i] << " ";
-            }
-            cout << endl;
-        }
-        cout << minSum[n - 1] << endl;
+        cout << minSum[0] << endl;
     }
 };
 
