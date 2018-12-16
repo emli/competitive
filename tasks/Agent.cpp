@@ -3,8 +3,11 @@
 using namespace std;
 
 #define all(x) (x).begin(),(x).end()
-const bool debug = false;
+const bool debug = true;
 
+int powerMin(int a, int b, int c) {
+    return min(a, min(b, c));
+}
 class Agent {
 public:
     void solve(std::istream &cin, std::ostream &cout) {
@@ -20,13 +23,18 @@ public:
         }
         sort(all(a));
 
+        if (debug) {
+            for (int i = 0; i < n; ++i) {
+                cout << a[i].first << " " << a[i].second << endl;
+            }
+        }
         for (int i = 1; i < n; ++i) {
             if (i == 1) {
-                minSum[i] = minSum[i - 1] + min(max(a[i - 1].second, a[i].second), max(a[i + 1].second, a[i].second));
+                minSum[i] = minSum[i - 1] + powerMin(a[i - 1].second, a[i].second, a[i + 1].second);
             } else if (i == n - 1) {
-                minSum[i] = minSum[i - 1] + min(a[i - 1].second, a[i].second);
+                minSum[i] = minSum[i - 1] + max(a[i - 1].second, a[i].second);
             } else {
-                minSum[i] = minSum[i - 2] + min(max(a[i - 1].second, a[i].second), max(a[i + 1].second, a[i].second));
+                minSum[i] = minSum[i - 2] + powerMin(a[i - 1].second, a[i].second, a[i + 1].second);
             }
         }
 
@@ -39,6 +47,7 @@ public:
             for (int i = 0; i < n; ++i) {
                 cout << minSum[i] << " ";
             }
+            cout << endl;
         }
         cout << minSum[n - 1] << endl;
     }
