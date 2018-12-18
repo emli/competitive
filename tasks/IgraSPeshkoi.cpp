@@ -2,9 +2,6 @@
 
 using namespace std;
 
-const int N = 101;
-int maxAns[N][N];
-
 class IgraSPeshkoi {
 public:
     vector<int> a;
@@ -13,27 +10,26 @@ public:
         cin.tie(nullptr);
         int n;
         cin >> n;
-        a.resize(n);
+        vector<int> a(n);
         for (int i = 0; i < n; ++i) {
             cin >> a[i];
         }
+        vector<vector<int>> maxAns(n + 1, vector<int>(n + 1));
 
         for (int len = 1; len <= n; ++len) {
             for (int left = 0; left + len - 1 < n; ++left) {
                 int right = left + len - 1;
-                for (int first = 1; first >= 0; --first) {
                     int &res = maxAns[left][right];
                     if (left == right) {
                         res = a[left];
                     }
                     if (left < right) {
-                        if (first) {
+                        if ((n + left + right) % 2) {
                             res = max(maxAns[left + 1][right], maxAns[left][right - 1]);
                         } else {
                             res = min(maxAns[left + 1][right], maxAns[left][right - 1]);
                         }
                     }
-                }
             }
         }
         cout << maxAns[0][n - 1] << endl;
