@@ -35,7 +35,25 @@ public:
         for (int i = 0; i < n; ++i) {
             cin >> a[i];
         }
-        memset(dp, -1, sizeof dp);
-        cout << go(0, n - 1, 1) << endl;
+
+        for (int len = 1; len <= n; ++len) {
+            for (int left = 0; left + len - 1 < n; ++left) {
+                int right = left + len - 1;
+                for (int first = 1; first >= 0; --first) {
+                    int &res = dp[left][right][first];
+                    if (left == right) {
+                        res = a[left];
+                    }
+                    if (left < right) {
+                        if (first) {
+                            res = max(dp[left + 1][right][1 - first], dp[left][right - 1][1 - first]);
+                        } else {
+                            res = min(dp[left + 1][right][1 - first], dp[left][right - 1][1 - first]);
+                        }
+                    }
+                }
+            }
+        }
+        cout << dp[0][n - 1][1] << endl;
     }
 };
