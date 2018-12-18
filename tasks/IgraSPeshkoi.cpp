@@ -19,17 +19,17 @@ public:
         for (int len = 1; len <= n; ++len) {
             for (int left = 0; left + len - 1 < n; ++left) {
                 int right = left + len - 1;
-                    int &res = maxAns[left][right];
-                    if (left == right) {
-                        res = a[left];
+                int &res = maxAns[left][right];
+                if (left == right) {
+                    res = a[left];
+                } else {
+                    int player = (n + left + right) % 2;
+                    if (player) {
+                        res = max(maxAns[left + 1][right], maxAns[left][right - 1]);
+                    } else {
+                        res = min(maxAns[left + 1][right], maxAns[left][right - 1]);
                     }
-                    if (left < right) {
-                        if ((n + left + right) % 2) {
-                            res = max(maxAns[left + 1][right], maxAns[left][right - 1]);
-                        } else {
-                            res = min(maxAns[left + 1][right], maxAns[left][right - 1]);
-                        }
-                    }
+                }
             }
         }
         cout << maxAns[0][n - 1] << endl;
