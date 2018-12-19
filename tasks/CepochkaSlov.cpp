@@ -22,7 +22,7 @@ public:
         for (int i = 0; i < n; ++i) {
             maxLen[i] = 1;
             for (int j = 0; j < i; ++j) {
-                if (a[i].substr(0, a[j].size()) == a[j] && (a[j].size() + 1 == a[i].size())) {
+                if (a[i].substr(0, a[j].size()) == a[j] && a[j].size() < a[i].size()) {
                     maxLen[i] = max(maxLen[j] + 1, maxLen[i]);
                 }
             }
