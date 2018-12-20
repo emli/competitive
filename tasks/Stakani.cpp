@@ -2,7 +2,7 @@
 
 using namespace std;
 
-
+int mod = static_cast<int>(1e6);
 class Stakani {
 public:
     int k;
@@ -33,13 +33,14 @@ public:
                     continue;
                 }
                 if (s.back() == x && s.length() > 0) {
-                    ans += go(c + 1, temp);
+                    ans += go(c + 1, temp) % mod;
                 } else {
-                    ans += go(c + 10, temp);
+                    ans += go(c + 10, temp) % mod;
                 }
             }
         }
-        return res = ans;
+        use = true;
+        return res = ans % mod;
     }
 
     void solve(std::istream &cin, std::ostream &cout) {
