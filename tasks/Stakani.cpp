@@ -2,6 +2,7 @@
 
 using namespace std;
 
+
 class Stakani {
 public:
     int k;
@@ -12,10 +13,16 @@ public:
         }
         return s.substr(s.size() - 4);
     }
-
-    int go(int c, const string &s, const string &all) {
+    map<pair<int,string>,int> mp;
+    map<pair<int,string>,bool > used;
+    int go(int c, const string &s) {
+        int &res = mp[{c,s}];
+        bool &use = used[{c,s}];
+        if (use){
+            return res;
+        }
         if (c == k) {
-            return 1;
+            return res = 1;
         }
         int ans = 0;
         if (c < k) {
@@ -26,20 +33,19 @@ public:
                     continue;
                 }
                 if (s.back() == x && s.length() > 0) {
-                    ans += go(c + 1, temp, all + x);
+                    ans += go(c + 1, temp);
                 } else {
-                    ans += go(c + 10, temp, all + x);
+                    ans += go(c + 10, temp);
                 }
             }
         }
-        return ans;
+        return res = ans;
     }
 
     void solve(std::istream &cin, std::ostream &cout) {
         ios::sync_with_stdio(false);
         cin.tie(nullptr);
         cin >> k;
-        cout << go(0, "", "") << endl;
+        cout << go(0, "") << endl;
     }
 };
-
