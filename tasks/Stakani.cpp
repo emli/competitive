@@ -3,8 +3,6 @@
 using namespace std;
 
 int mod = (1e6);
-const int N = 1e5 + 10;
-int dp[N][3][5];
 class Stakani {
 public:
     int k;
@@ -14,27 +12,28 @@ public:
         cin >> k;
         int x = 2;
 
+        vector<vector<vector<int>>> count(k + 11, vector<vector<int>>(3, vector<int>(4)));
         for (int c = k; c >= 0; --c) {
             for (int s = 0; s <= 2; ++s) {
-                for (int count = 0; count <= 3; ++count) {
-                    int &res = dp[c][s][count];
+                for (int t = 0; t <= 3; ++t) {
+                    int &res = count[c][s][t];
                     if (c == k) {
                         res = 1;
                     }
                     int ans = 0;
                     if (c < k) {
-                        for (int x : {0, 1}) {
+                        for (int i = 0; i < 2; i++) {
                             int temp = 0;
-                            if (s == x) {
-                                temp = count + 1;
+                            if (s == i) {
+                                temp = t + 1;
                             }
                             if (temp == 4) {
                                 continue;
                             }
-                            if (s == x) {
-                                ans += dp[c + 1][s][temp] % mod;
+                            if (s == i) {
+                                ans += count[c + 1][s][temp] % mod;
                             } else {
-                                ans += dp[c + 10][x][1] % mod;
+                                ans += count[c + 10][i][1] % mod;
                             }
                         }
                         res = ans % mod;
@@ -42,6 +41,6 @@ public:
                 }
             }
         }
-        cout << dp[0][x][0] << endl;
+        cout << count[0][x][0] << endl;
     }
 };
