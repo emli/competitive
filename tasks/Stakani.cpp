@@ -18,17 +18,14 @@ public:
             return 1;
         }
         int ans = 0;
-        if (c == 0) {
-            ans += go(c + 10, s + "A", all + "A");
-            ans += go(c + 10, s + "B", all + "B");
-        } else if (c < k) {
+        if (c < k) {
             for (char x : {'A', 'B'}) {
                 string temp = s + x;
                 temp = lastFourLetter(temp);
                 if (temp == "AAAA" || temp == "BBBB") {
                     continue;
                 }
-                if (s.back() == x) {
+                if (s.back() == x && s.length() > 0) {
                     ans += go(c + 1, temp, all + x);
                 } else {
                     ans += go(c + 10, temp, all + x);
