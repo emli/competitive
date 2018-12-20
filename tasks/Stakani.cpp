@@ -41,7 +41,36 @@ public:
         cin.tie(nullptr);
         cin >> k;
         int x = 2;
-        memset(dp,-1, sizeof dp);
-        cout << go(0, x,0) << endl;
+
+        for (int c = k; c >= 0; --c) {
+            for (int s = 0; s <= 1; ++s) {
+                for (int count = 1; count <= 3; ++count) {
+                    int &res = dp[c][s][count];
+                    if (c == k) {
+                        res = 1;
+                        continue;
+                    }
+                    int ans = 0;
+                    if (c < k) {
+                        for (int x : {0, 1}) {
+                            int temp = 0;
+                            if (s == x) {
+                                temp = count + 1;
+                            }
+                            if (temp == 4) {
+                                continue;
+                            }
+                            if (s == x) {
+                                ans += dp[c + 1][s][temp] % mod;
+                            } else {
+                                ans += dp[c + 10][x][1] % mod;
+                            }
+                        }
+                    }
+                    res = ans % mod;
+                }
+            }
+        }
+        cout << dp[0][x][0] << endl;
     }
 };
