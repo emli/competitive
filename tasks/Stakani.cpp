@@ -3,6 +3,8 @@
 using namespace std;
 
 int mod = static_cast<int>(1e6);
+const int N = 1e5 + 10;
+int dp[N][256][5];
 class Stakani {
 public:
     int k;
@@ -13,12 +15,10 @@ public:
         }
         return s.substr(s.size() - 4);
     }
-    map<pair<int,string>,int> mp;
-    map<pair<int,string>,bool > used;
-    int go(int c, const string &s) {
-        int &res = mp[{c,s}];
-        bool &use = used[{c,s}];
-        if (use){
+    int go(int c, char s,int count) {
+        cout << count << endl;
+        int &res = dp[c][s][count];
+        if (res != -1){
             return res;
         }
         if (c == k) {
@@ -27,19 +27,20 @@ public:
         int ans = 0;
         if (c < k) {
             for (char x : {'A', 'B'}) {
-                string temp = s + x;
-                temp = lastFourLetter(temp);
-                if (temp == "AAAA" || temp == "BBBB") {
+                int temp = 0;
+                if (s == x){
+                    temp = count + 1;
+                }
+                if (temp == 4) {
                     continue;
                 }
-                if (s.back() == x && s.length() > 0) {
-                    ans += go(c + 1, temp) % mod;
+                if (s == x) {
+                    ans += go(c + 1, s,temp) % mod;
                 } else {
-                    ans += go(c + 10, temp) % mod;
+                    ans += go(c + 10, s,temp) % mod;
                 }
             }
         }
-        use = true;
         return res = ans % mod;
     }
 
@@ -47,6 +48,8 @@ public:
         ios::sync_with_stdio(false);
         cin.tie(nullptr);
         cin >> k;
-        cout << go(0, "") << endl;
+        char x = 0;
+        memset(dp,-1, sizeof(dp));
+        cout << go(0, x,0) << endl;
     }
 };
