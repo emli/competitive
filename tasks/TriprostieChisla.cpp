@@ -19,29 +19,35 @@ public:
 
         int answer = 0;
         int change = 1;
-        vector<int> primes = allPrimes(1000);
-        for (int len = n; len >= 3; --len) {
-            for (int last3digits = 100; last3digits <= 999; ++last3digits) {
-                int &res = dp[change][last3digits];
-                if (len == n) {
-                    res = 1;
-                }
-                if (len < n) {
-                    int ans = 0;
-                    for (int i = 1; i <= 9; ++i) {
-                        int t = (last3digits * 10 + i) % 1000;
-                        if (isPrime(t) && t >= 100) {
-                            ans += dp[1 - change][t] % mod;
-                        }
-                    }
-                    res = ans;
-                }
+        vector<int> vector1 = allPrimes(1000);
+        vector<int> primes;
+        for (int x : vector1) {
+            if (x >= 100) {
+                primes.push_back(x);
             }
-            change = 1 - change;
         }
-
         for (int k : primes) {
             if (k >= 100) {
+                for (int len = n; len >= 3; --len) {
+                    for (int last3digits : primes) {
+                        int &res = dp[change][last3digits];
+                        if (len == n) {
+                            res = 1;
+                        }
+                        if (len < n) {
+                            int ans = 0;
+                            for (int i = 1; i <= 9; ++i) {
+                                if (1) {
+                                    int t = (last3digits * 10 + i) % 1000;
+                                    if (t >= 100)
+                                        ans += dp[1 - change][t] % mod;
+                                }
+                            }
+                            res = ans;
+                        }
+                    }
+                    change = 1 - change;
+                }
                 answer += dp[1 - change][k] % mod;
             }
         }
