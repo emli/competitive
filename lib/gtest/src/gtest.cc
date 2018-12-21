@@ -622,7 +622,7 @@ TypeId GetTestTypeId() {
 }
 
 // The value of GetTestTypeId() as seen from within the Google Test
-// library.  This is solely for testing GetTestTypeId().
+// lib.  This is solely for testing GetTestTypeId().
 extern const TypeId kTestTypeIdInGoogleTest = GetTestTypeId();
 
 // This predicate-formatter checks that 'results' contains a test part

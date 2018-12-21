@@ -108,7 +108,7 @@ GTEST_USE_OWN_TR1_TUPLE must be set to 0 on those compilers."
 
 // In theory, defining stuff in the ::std namespace is undefined
 // behavior.  We can do this as we are playing the role of a standard
-// library vendor.
+// lib vendor.
 namespace std {
 namespace tr1 {
 

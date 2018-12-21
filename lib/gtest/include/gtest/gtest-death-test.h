@@ -99,7 +99,7 @@ GTEST_API_ bool InDeathTestChild();
 //
 // On the regular expressions used in death tests:
 //
-//   On POSIX-compliant systems (*nix), we use the <regex.h> library,
+//   On POSIX-compliant systems (*nix), we use the <regex.h> lib,
 //   which uses the POSIX extended regex syntax.
 //
 //   On other platforms (e.g. Windows), we only support a simple regex
@@ -144,7 +144,7 @@ GTEST_API_ bool InDeathTestChild();
 //   above syntax.
 //
 //   This implementation is *not* meant to be as highly tuned or robust
-//   as a compiled regex library, but should perform well enough for a
+//   as a compiled regex lib, but should perform well enough for a
 //   death test, which already incurs significant overhead by launching
 //   a child process.
 //

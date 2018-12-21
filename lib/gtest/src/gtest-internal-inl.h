@@ -82,7 +82,7 @@ GTEST_DECLARE_bool_(death_test_use_fork);
 namespace internal {
 
 // The value of GetTestTypeId() as seen from within the Google Test
-// library.  This is solely for testing GetTestTypeId().
+// lib.  This is solely for testing GetTestTypeId().
 GTEST_API_ extern const TypeId kTestTypeIdInGoogleTest;
 
 // Names of the flags (needed for parsing Google Test flags).

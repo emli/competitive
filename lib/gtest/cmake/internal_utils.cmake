@@ -25,10 +25,10 @@ macro(fix_default_compiler_settings_)
              CMAKE_CXX_FLAGS CMAKE_CXX_FLAGS_DEBUG CMAKE_CXX_FLAGS_RELEASE
              CMAKE_CXX_FLAGS_MINSIZEREL CMAKE_CXX_FLAGS_RELWITHDEBINFO)
       if (NOT BUILD_SHARED_LIBS AND NOT gtest_force_shared_crt)
-        # When Google Test is built as a shared library, it should also use
+          # When Google Test is built as a shared lib, it should also use
         # shared runtime libraries.  Otherwise, it may end up with multiple
-        # copies of runtime library data in different modules, resulting in
-        # hard-to-find crashes. When it is built as a static library, it is
+          # copies of runtime lib data in different modules, resulting in
+          # hard-to-find crashes. When it is built as a static lib, it is
         # preferable to use CRT as static libraries, as we don't have to rely
         # on CRT DLLs being available. CMake always defaults to using shared
         # CRT libraries, so we override that default here.
@@ -123,7 +123,7 @@ macro(config_compiler_and_linker)
     set(cxx_no_rtti_flags "")
   endif()
 
-  if (CMAKE_USE_PTHREADS_INIT)  # The pthreads library is available and allowed.
+  if (CMAKE_USE_PTHREADS_INIT)  # The pthreads lib is available and allowed.
     set(cxx_base_flags "${cxx_base_flags} -DGTEST_HAS_PTHREAD=1")
   else()
     set(cxx_base_flags "${cxx_base_flags} -DGTEST_HAS_PTHREAD=0")
@@ -144,7 +144,7 @@ endmacro()
 # Defines the gtest & gtest_main libraries.  User tests should link
 # with one of them.
 function(cxx_library_with_type name type cxx_flags)
-  # type can be either STATIC or SHARED to denote a static or shared library.
+    # type can be either STATIC or SHARED to denote a static or shared lib.
   # ARGN refers to additional arguments after 'cxx_flags'.
   add_library(${name} ${type} ${ARGN})
   set_target_properties(${name}
@@ -189,7 +189,7 @@ function(cxx_executable_with_flags name cxx_flags libs)
       COMPILE_DEFINITIONS "GTEST_LINKED_AS_SHARED_LIBRARY=1")
   endif()
   # To support mixing linking in static and dynamic libraries, link each
-  # library in with an extra call to target_link_libraries.
+  # lib in with an extra call to target_link_libraries.
   foreach (lib "${libs}")
     target_link_libraries(${name} ${lib})
   endforeach()

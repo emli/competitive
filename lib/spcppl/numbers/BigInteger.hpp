@@ -209,6 +209,7 @@ private:
 
 	template <typename T>
 	void assignSubtractAbsolute(T&& rhsNumber) {
+		static_assert(std::is_same<std::decay_t<T>, std::vector<std::int32_t>>::value, "");
 		if (detail::compare_less(number, rhsNumber)) {
 			isNegative = !isNegative;
 			std::vector<std::int32_t> copy_this = std::move(number);
@@ -266,7 +267,7 @@ private:
 	}
 
 	static constexpr int digits = 9;
-    static constexpr std::int32_t multiplier = 1000000000;
+	static constexpr std::int32_t multiplier = 1'000'000'000;
 
 	// todo: measure performance with uint32_t instead
 	std::vector<std::int32_t> number;

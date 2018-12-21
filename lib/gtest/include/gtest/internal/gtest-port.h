@@ -104,11 +104,11 @@
 //                              is building in C++11/C++98 mode.
 //   GTEST_LINKED_AS_SHARED_LIBRARY
 //                            - Define to 1 when compiling tests that use
-//                              Google Test as a shared library (known as
+//                              Google Test as a shared lib (known as
 //                              DLL on Windows).
 //   GTEST_CREATE_SHARED_LIBRARY
 //                            - Define to 1 when compiling Google Test itself
-//                              as a shared library.
+//                              as a shared lib.
 
 // Platform-indicating macros
 // --------------------------
@@ -332,7 +332,7 @@
 #endif
 
 // Distinct from C++11 language support, some environments don't provide
-// proper C++11 library support. Notably, it's possible to build in
+// proper C++11 lib support. Notably, it's possible to build in
 // C++11 mode when targeting Mac OS X 10.6, which has an old libstdc++
 // with no C++11 support.
 //
@@ -351,7 +351,7 @@
 # define GTEST_STDLIB_CXX11 1
 #endif
 
-// Only use C++11 library features if the library provides them.
+// Only use C++11 lib features if the lib provides them.
 #if GTEST_STDLIB_CXX11
 # define GTEST_HAS_STD_BEGIN_AND_END_ 1
 # define GTEST_HAS_STD_FORWARD_LIST_ 1
@@ -593,7 +593,7 @@ struct _RTL_CRITICAL_SECTION;
 # include <typeinfo>
 #endif
 
-// Determines whether Google Test can use the pthreads library.
+// Determines whether Google Test can use the pthreads lib.
 #ifndef GTEST_HAS_PTHREAD
 // The user didn't tell us explicitly, so we make reasonable assumptions about
 // which platforms have pthreads support.
@@ -705,7 +705,7 @@ using ::std::tuple_size;
 
 # elif GTEST_OS_SYMBIAN
 
-// On Symbian, BOOST_HAS_TR1_TUPLE causes Boost's TR1 tuple library to
+// On Symbian, BOOST_HAS_TR1_TUPLE causes Boost's TR1 tuple lib to
 // use STLport's tuple implementation, which unfortunately doesn't
 // work as the copy of STLport distributed with Symbian is incomplete.
 // By making sure BOOST_HAS_TR1_TUPLE is undefined, we force Boost to
@@ -941,7 +941,7 @@ using ::std::tuple_size;
 # define GTEST_NO_INLINE_
 #endif
 
-// _LIBCPP_VERSION is defined by the libc++ library from the LLVM project.
+// _LIBCPP_VERSION is defined by the libc++ lib from the LLVM project.
 #if defined(__GLIBCXX__) || defined(_LIBCPP_VERSION)
 # define GTEST_HAS_CXXABI_H_ 1
 #else
@@ -1332,7 +1332,7 @@ const T& move(const T& t) {
 //
 //   ImplicitCast_<ToType>(expr)
 //
-// ImplicitCast_ would have been part of the C++ standard library,
+// ImplicitCast_ would have been part of the C++ standard lib,
 // but the proposal was submitted too late.  It will probably make
 // its way into the language in the future.
 //
@@ -2402,7 +2402,7 @@ inline const char* GetEnv(const char* name) {
 GTEST_DISABLE_MSC_WARNINGS_POP_()
 
 #if GTEST_OS_WINDOWS_MOBILE
-// Windows CE has no C library. The abort() function is used in
+// Windows CE has no C lib. The abort() function is used in
 // several places in Google Test. This implementation provides a reasonable
 // imitation of standard behaviour.
 void Abort();
