@@ -26,26 +26,27 @@ public:
                 primes.push_back(x);
             }
         }
-        for (int k : primes) {
-            for (int len = n; len >= 3; --len) {
-                for (int last3digits : primes) {
-                    int &res = dp[change][last3digits];
-                    if (len == n) {
-                        res = 1;
-                    }
-                    if (len < n) {
-                        int ans = 0;
-                        for (int i = 1; i <= 9; ++i) {
-                            int t = (last3digits * 10 + i) % 1000;
-                            if (t >= 100)
-                                ans += dp[1 - change][t] % mod;
-                        }
-                        res = ans;
-                    }
+        for (int len = n; len >= 3; --len) {
+            for (int last3digits : primes) {
+                int &res = dp[change][last3digits];
+                if (len == n) {
+                    res = 1;
                 }
-                change = 1 - change;
+                if (len < n) {
+                    int ans = 0;
+                    for (int i = 1; i <= 9; ++i) {
+                        int t = (last3digits * 10 + i) % 1000;
+                        if (t >= 100)
+                            ans = (ans + dp[1 - change][t]) % mod;
+                    }
+                    res = ans % mod;
+                }
             }
-            answer += dp[1 - change][k] % mod;
+            change = 1 - change;
+        }
+        for (int k : primes) {
+            answer = (answer + dp[1 - change][k]) % mod;
+            answer %= mod;
         }
         cout << answer << endl;
     }
