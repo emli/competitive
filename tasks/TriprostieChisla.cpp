@@ -12,38 +12,18 @@ class TriprostieChisla {
 public:
     int n;
 
-    int go(int len, int last3digits) {
-        int &res = dp[len][last3digits];
-        if (res != -1) {
-            return res;
-        }
-        if (len == n) {
-            return res = 1;
-        }
-        if (len < n) {
-            int ans = 0;
-            for (int i = 1; i <= 9; ++i) {
-                int t = (last3digits * 10 + i) % 1000;
-                if (isPrime(t) && t >= 100) {
-                    ans += go(len + 1, t) % mod;
-                }
-            }
-            return res = ans;
-        }
-    }
-
     void solve(std::istream &cin, std::ostream &cout) {
         ios::sync_with_stdio(false);
         cin.tie(nullptr);
         cin >> n;
 
         int answer = 0;
-        memset(dp, -1, sizeof(dp));
-        for (int i = 100; i < 1000; ++i) {
-            if (isPrime(i)) {
+        int change = 0;
+        for (int k = 100; k < 1000; ++k) {
+            if (isPrime(k)) {
                 for (int len = n; len >= 0; --len) {
                     for (int last3digits = 100; last3digits <= 999; ++last3digits) {
-                        int &res = dp[len][last3digits];
+                        int &res = dp[change][last3digits];
                         if (len == n) {
                             res = 1;
                         }
@@ -52,15 +32,16 @@ public:
                             for (int i = 1; i <= 9; ++i) {
                                 int t = (last3digits * 10 + i) % 1000;
                                 if (isPrime(t) && t >= 100) {
-                                    ans += dp[len + 1][t] % mod;
+                                    ans += dp[1 - change][t] % mod;
                                 }
                             }
                             res = ans;
                         }
                     }
+                    change = 1 - change;
                 }
+                answer += dp[1 - change][k] % mod;
             }
-            answer += dp[3][i] % mod;
         }
         cout << answer << endl;
     }
