@@ -18,12 +18,12 @@ public:
         cin >> n;
 
         int answer = 0;
-        int change = 0;
+        int change = 1;
         for (int k = 100; k < 1000; ++k) {
             if (isPrime(k)) {
-                for (int len = n; len >= 0; --len) {
+                for (int len = n; len >= 3; --len) {
                     for (int last3digits = 100; last3digits <= 999; ++last3digits) {
-                        int &res = dp[len][last3digits];
+                        int &res = dp[change][last3digits];
                         if (len == n) {
                             res = 1;
                         }
@@ -32,7 +32,7 @@ public:
                             for (int i = 1; i <= 9; ++i) {
                                 int t = (last3digits * 10 + i) % 1000;
                                 if (isPrime(t) && t >= 100) {
-                                    ans += dp[len + 1][t] % mod;
+                                    ans += dp[1 - change][t] % mod;
                                 }
                             }
                             res = ans;
@@ -40,7 +40,7 @@ public:
                     }
                     change = 1 - change;
                 }
-                answer += dp[3][k] % mod;
+                answer += dp[1 - change][k] % mod;
             }
         }
         cout << answer << endl;
