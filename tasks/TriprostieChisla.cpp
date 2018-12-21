@@ -3,7 +3,6 @@
 
 using namespace std;
 
-// this file
 const int N = (int) 1e4 + 7;
 int mod = 1e9 + 9;
 
@@ -38,13 +37,31 @@ public:
         cin.tie(nullptr);
         cin >> n;
 
-        int ans = 0;
+        int answer = 0;
         memset(dp, -1, sizeof(dp));
         for (int i = 100; i < 1000; ++i) {
             if (isPrime(i)) {
-                ans += go(3, i) % mod;
+                for (int len = n; len >= 0; --len) {
+                    for (int last3digits = 100; last3digits <= 999; ++last3digits) {
+                        int &res = dp[len][last3digits];
+                        if (len == n) {
+                            res = 1;
+                        }
+                        if (len < n) {
+                            int ans = 0;
+                            for (int i = 1; i <= 9; ++i) {
+                                int t = (last3digits * 10 + i) % 1000;
+                                if (isPrime(t) && t >= 100) {
+                                    ans += dp[len + 1][t] % mod;
+                                }
+                            }
+                            res = ans;
+                        }
+                    }
+                }
             }
+            answer += dp[3][i] % mod;
         }
-        cout << ans << endl;
+        cout << answer << endl;
     }
 };
