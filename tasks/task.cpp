@@ -1,4 +1,6 @@
+#include <iostream>
 #include </Users/emli/competitive/bits/stdc++.h>
+
 using namespace std;
 
 #define forn(i, n) for(int i = 0 ; (i) < (n) ; ++i)
@@ -19,10 +21,11 @@ const int dy[4] = {1, -1, 0,  0};
 
 
 
-class %ClassName% {
+class task {
 public:
 	void solve(std::istream& cin, std::ostream& cout) {
 		ios::sync_with_stdio(false);
         cin.tie(nullptr);
+        vector<int> a;
 	}
 };

@@ -1,3 +1,6 @@
 [submodule "lib"]
 	path = lib
 	url = git@github.com:AlexeyDmitriev/spcppl.git
+[submodule "spcppl"]
+	path = spcppl
+	url = git@github.com:AlexeyDmitriev/spcppl.git
