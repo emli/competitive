@@ -3,21 +3,22 @@
 #include <algorithm>
 using namespace std;
 
-class DMultipleOf2019 {
+class quickSort {
 public:
     void solve(std::istream& cin, std::ostream& cout) {
 		ios::sync_with_stdio(false);
         cin.tie(nullptr);
 
-        string s;
+        int n;
 
-        cin >> s;
+        cin >> n;
 
-        int sum = 0;
-        for (int i = 0; i < s.size(); ++i) {
+        vector<int> a(n);
 
-            sum += (s[i] - '0');
-            cout << sum % 3 << " ";
+        for (int i = 0; i < n; ++i) {
+            cin >> a[i];
         }
+
+
 	}
 };
