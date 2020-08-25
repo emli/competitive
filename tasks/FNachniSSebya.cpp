@@ -45,7 +45,6 @@ public:
                 dfs(i,j,a,n,m,ans);
             }
         }
-
         cout << ans << endl;
     }
     void solve(std::istream& cin, std::ostream& cout) {
