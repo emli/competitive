@@ -7,30 +7,33 @@ public:
     void solve(std::istream& cin, std::ostream& cout) {
 		ios::sync_with_stdio(false);
         cin.tie(nullptr);
-        int n;
+        ll n;
         cin >> n;
-        vector<int> a(n);
+        vector<ll> a(n);
 
-        for (int i = 0; i < n; ++i) {
+        for (ll i = 0; i < n; ++i) {
             cin >> a[i];
         }
 
-        int one = count(a.begin(),a.end(),1);
-        int zero = count(a.begin(),a.end(),0);
+        ll one = count(a.begin(),a.end(),1);
+        ll zero = count(a.begin(),a.end(),0);
 
-        int x = 0;
-        for (int i = 0; i < n; ++i) {
-            x += one;
-            if (a[i]){
+        ll y = 0;
+        for (ll i = n - 1; i >= 0; --i) {
+            if (a[i] == 1){
                 one--;
+            }else {
+                y += one;
             }
         }
+        
 
-        int y = 0;
-        for (int i = n - 1; i >= 0; --i) {
-            y += zero;
+        ll x = 0;
+        for (ll i = 0; i < n; ++i) {
             if (a[i] == 0){
                 zero--;
+            }else{
+                x += zero;
             }
         }
 
