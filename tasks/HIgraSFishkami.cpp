@@ -12,33 +12,18 @@ public:
 
         cin >> n >> m >> k;
 
-        vector<pair<int,int>> init(k),target(k);
-
-        vector<bool> get(k);
-
-        for (int i = 0; i < k; ++i) {
-            cin >> init[i].first >> init[i].second;
-        }
-
-        for (int i = 0; i < k; ++i) {
-            cin >> target[i].first >> target[i].second;
-        }
-
         string ans;
-        for (int i = 0; i < n - 1; ++i) {
-            for (int j = 0; j < m; ++j) {
-                ans.push_back('L');
-            }
-            ans.push_back('D');
-        }
 
-        for (int i = 0; i < n - 1; ++i) {
-            for (int j = 0; j < m; ++j) {
-                ans.push_back('R');
-            }
-            ans.push_back('U');
-        }
+        string left(m - 1,'L');
+        string down(n - 1,'D');
 
+        ans.append(left).append(down);
+
+        for (int j = 0; j < m; ++j) {
+            for (int i = 0; i < n - 1; ++i)
+                ans.append ((j%2 == 0) ? "U" : "D");
+            ans.append("R");
+        }
         cout << ans.size() << endl;
         cout << ans << endl;
 
