@@ -1,7 +1,9 @@
 
 %Code%
 
-int main() {
+#define loveAfterTheGame main
+
+int loveAfterTheGame() {
 	%ClassName% solver;
 	%Input%
 	%Output%
