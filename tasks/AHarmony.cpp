@@ -2,7 +2,7 @@
 #include <vector>
 #include <algorithm>
 using namespace std;
-
+ 
 class AHarmony {
 public:
     void solve(std::istream& cin, std::ostream& cout) {
