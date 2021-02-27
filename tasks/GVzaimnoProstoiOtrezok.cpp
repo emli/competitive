@@ -6,30 +6,24 @@ typedef long long ll;
 const int dx[] = {1,-1,0,0};
 const int dy[] = {0,0,1,-1};
 
-ll k;
 struct stack{
-    vector<ll> s, smin,smax;
+    vector<ll> s, g = {0};
 
     void push(ll x){
         s.push_back(x);
-        smin.push_back(smin.empty() ? x : ::min(smin.back(),x));
-        smax.push_back(smax.empty() ? x : ::max(smax.back(),x));
+        g.push_back(g.empty() ? x : ::__gcd(g.back(),x));
     }
     ll pop(){
         ll res = s.back();
-        smin.pop_back();
-        smax.pop_back();
+        g.pop_back();
         s.pop_back();
         return res;
     }
     bool empty(){
         return s.empty();
     }
-    ll min(){
-        return smin.empty() ? LLONG_MAX : smin.back();
-    }
-    ll max(){
-        return smax.empty() ? LLONG_MIN : smax.back();
+    ll gcd(){
+        return g.back();
     }
 };
 
@@ -48,19 +42,20 @@ void remove(){
 }
 
 bool good(){
-    ll mx = max(s1.max(),s2.max());
-    ll mn = min(s1.min(),s2.min());
-    return mx - mn <= k;
+    ll x = s1.gcd();
+    ll y = s2.gcd();
+    return __gcd(x,y) == 1;
 }
-class FOtrezkiSNebolshimRazbrosom {
+
+class GVzaimnoProstoiOtrezok {
 public:
     static void solve(std::istream& cin, std::ostream& cout) {
         ios::sync_with_stdio(false);
         cin.tie(nullptr);
 
-        int n;
+        ll n;
 
-        cin >> n >> k;
+        cin >> n;
 
         vector<ll> a(n);
 
@@ -69,19 +64,22 @@ public:
         }
 
         ll left = 0;
-        ll ans = 0;
+        ll ans = LLONG_MAX;
         for (ll right = 0; right < n; ++right) {
             add(a[right]);
 
-            while (!good()){
+            while (good()){
                 remove();
+                ans = min(ans,right - left + 1);
                 left++;
             }
 
-            ans += right - left + 1;
         }
 
-        cout << ans << endl;
+        if (ans == LLONG_MAX){
+            cout << -1 << endl;
+        }else {
+            cout << ans << endl;
+        }
 	}
 };
-
