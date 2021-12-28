@@ -18,21 +18,21 @@ public:
 
         vector<int> d(n + 1);
 
-        ranges:: sort(a);
+        ranges::sort(a);
+        ranges::reverse(a);
 
-        for (int i = 0; i < n; ++i) {
-            d[a[i]]++;
-        }
-
-//        for (int i = 1; i <= n; ++i) {
-//            d[i] += d[i - 1];
-//        }
+        int prev = 0;
 
         for (int i = 0; i <= n; ++i) {
+            int counter = 0;
 
-                cout <<  d[i] - i << " ";
+            while (a.back() == i) {
+                a.pop_back();
+                counter++;
+            }
 
+            cout << counter + prev << " ";
+            prev = counter + prev;
         }
-        cout << endl;
 	}
 };
