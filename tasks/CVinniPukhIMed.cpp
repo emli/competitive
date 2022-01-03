@@ -34,6 +34,6 @@ public:
         }
 
         cout << ans << endl;
-        
+
     }
 };
