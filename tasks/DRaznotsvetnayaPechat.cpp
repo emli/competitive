@@ -22,7 +22,7 @@ public:
             }
         }
         s = p;
-
+        n = s.size();
         string answer = "YES\n";
         for (int i = 0; i < n; ++i) {
             vector<char> set;
